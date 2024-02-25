@@ -3,7 +3,11 @@ footer{
     justify-content: space-around;
     align-items: center;
     background-color: rgb(107, 107, 107);
-    height: 10vh;
+    height: 10%;
+    z-index: 1;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
     .redes{
         display: flex;
         align-items: center;

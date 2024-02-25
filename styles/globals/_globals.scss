@@ -3,10 +3,14 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Quicksand', sans-serif;
-    
+    text-transform: capitalize;
 }
 
 a{
     text-decoration: none;
-    
+}
+
+body{
+    height: 80vh;
+    background-color: rgba(163, 163, 163, 0.767);
 }
