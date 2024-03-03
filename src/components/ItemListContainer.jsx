@@ -4,6 +4,7 @@ import ItemList from "./ItemList";
 import Loader from "./Loader"
 import { db } from "../../firebase/config";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import AgregarVestido from "./AgregarVestido";
 
 
 const ItemListContainer = () => {
@@ -55,6 +56,7 @@ const ItemListContainer = () => {
 
     return (
         <div>
+            <AgregarVestido/>
             <input
                 className="buscador"
                 type="text"
@@ -65,10 +67,16 @@ const ItemListContainer = () => {
             {cargando ? (
                 <Loader />
             ) : (
-                <ItemList vestidos={vestidos} />
-
-            )
-            }
+                <div>
+                    {vestidos.length === 0 ? (
+                        <div className="sinVestidos">
+                            <p>No se encontraron vestidos.</p>
+                        </div>
+                    ) : (
+                        <ItemList vestidos={vestidos} />
+                    )}
+                </div>
+            )}
         </div>
 
     )

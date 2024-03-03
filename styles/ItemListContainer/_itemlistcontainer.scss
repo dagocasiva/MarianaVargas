@@ -11,3 +11,15 @@ h2{
     margin: 2%;
     margin-left: 3%;
 }
+
+.sinVestidos{
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+        font-size: 150%;
+        font-weight: 600;
+        font-style: italic;
+    }
+}
