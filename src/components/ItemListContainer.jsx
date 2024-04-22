@@ -4,8 +4,6 @@ import ItemList from "./ItemList";
 import Loader from "./Loader"
 import { db } from "../../firebase/config";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import AgregarVestido from "./AgregarVestido";
-
 
 const ItemListContainer = () => {
     const [vestidos, setVestidos] = useState([])
@@ -25,10 +23,12 @@ const ItemListContainer = () => {
         getDocs(docsRef)
             .then((querySnapshot) => {
                 const docs = querySnapshot.docs.map(doc => {
+                    const data = doc.data();
                     return {
-                        ...doc.data(),
-                        id: doc.id
-                    }
+                        ...data,
+                        id: doc.id,
+                        disponibilidad: data.disponibilidad 
+                    };
                 })
                 setVestidos(docs)
                 setVestidosOriginales(docs);
@@ -41,9 +41,9 @@ const ItemListContainer = () => {
             const busquedaMin = busqueda.toLowerCase();
             const resultados = vestidosOriginales.filter(vestido =>
                 (vestido.nombre && vestido.nombre.toLowerCase().includes(busquedaMin)) ||
-            (vestido.color && vestido.color.toLowerCase().includes(busquedaMin)) ||
-            (vestido.disponibilidad && vestido.disponibilidad.toLowerCase().includes(busquedaMin))
-        );
+                (vestido.color && vestido.color.toLowerCase().includes(busquedaMin)) ||
+                (vestido.disponibilidad && vestido.disponibilidad.toLowerCase().includes(busquedaMin))
+            );
             setVestidos(resultados);
         } else {
             setVestidos(vestidosOriginales);
@@ -53,33 +53,34 @@ const ItemListContainer = () => {
     const handleBusquedaChange = (event) => {
         setBusqueda(event.target.value);
     };
+    
 
     return (
-        <div>
-            <AgregarVestido/>
-            <input
-                className="buscador"
-                type="text"
-                value={busqueda}
-                onChange={handleBusquedaChange}
-                placeholder="Buscar vestidos..."
-            />
+        <div className="vestidos">
+            
             {cargando ? (
                 <Loader />
             ) : (
                 <div>
+                    <input
+                        className="buscador"
+                        type="text"
+                        value={busqueda}
+                        onChange={handleBusquedaChange}
+                        placeholder="Buscar vestidos..."
+                    />
                     {vestidos.length === 0 ? (
                         <div className="sinVestidos">
                             <p>No se encontraron vestidos.</p>
                         </div>
                     ) : (
                         <ItemList vestidos={vestidos} />
+                        
                     )}
                 </div>
             )}
         </div>
 
     )
-
 }
 export default ItemListContainer

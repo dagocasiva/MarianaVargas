@@ -2,7 +2,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Raleway", sans-serif
+    // font-family: 'Quicksand', sans-serif;
 }
 
 a{
@@ -11,5 +12,11 @@ a{
 
 body{
     height: 80vh;
-    background-color: rgba(163, 163, 163, 0.767);
+    background-color: #fffbf4b6;
+}
+
+.notFound{
+    height: 80vh;
+    font-size: 200%;
+    margin: 2%;
 }
