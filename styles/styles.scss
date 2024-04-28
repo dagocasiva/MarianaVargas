@@ -1,9 +1,8 @@
 @import '../styles/Navbar/navbar';
 @import '../styles/globals/globals';
-@import '../styles/Footer/Footer';
 @import '../styles/ItemListContainer/itemListContainer';
 @import '../styles/itemCard/itemCard';
 @import '../styles/agregarVestido/agregarVestido';
 
-@import '@sweetalert2/theme-dark/dark.scss';
+@import 'sweetalert2/src/sweetalert2.scss';
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');

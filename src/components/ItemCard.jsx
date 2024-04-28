@@ -52,10 +52,18 @@ const ItemCard = ({ item }) => {
                 newData.fechaAlquilerHasta = fechaAlquilerHasta;
             }
             await updateDoc(doc(db, "vestidos", item.id), newData);
-            console.log("Producto actualizado correctamente");
+            Swal.fire({
+                title: "Felicitaciones!",
+                text: `El producto fue actualizado correctamente. Por favor, recargue la pagina para poder encontrarlo`,
+                icon: "success"
+            })
             setEditando(false);
         } catch (error) {
-            console.error("Error al actualizar el producto:", error);
+            Swal({
+                title: "Ups!",
+                text: "Hubo un error actualizando el vestido, por favor intenta nuevamente",
+                icon: "error",
+            });
         }
     };
 
@@ -87,12 +95,12 @@ const ItemCard = ({ item }) => {
                         </select>
                         {nuevaDisponibilidad === "alquilado" && (
                             <div className="alquilado">
-                                <label>
-                                    Desde:
+                                <label> 
+                                    Desde :   
                                     <input type="date" value={fechaAlquilerDesde} onChange={handleChangeFechaAlquilerDesde} required />
                                 </label>
                                 <label>
-                                    Hasta:
+                                    Hasta :  
                                     <input type="date" value={fechaAlquilerHasta} onChange={handleChangeFechaAlquilerHasta} required />
                                 </label>
 

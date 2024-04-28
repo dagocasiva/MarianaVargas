@@ -19,7 +19,6 @@ const AgregarVestido = () => {
         let result;
         try {
             result = await uploadFile(file);
-            console.log(result);
         } catch (error) {
             console.error(error);
         }
@@ -45,7 +44,7 @@ const AgregarVestido = () => {
                 setNombre("");
             setColor("");
             setFile("")
-            setDisponibilidad("");
+            setDisponibilidad("disponible");
             setFechaAlquilerDesde("");
             setFechaAlquilerHasta("");
         } catch (error) {
