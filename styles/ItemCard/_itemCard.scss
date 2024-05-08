@@ -11,7 +11,8 @@
         justify-content: center;
         align-items: self-start;
         flex-direction: column;
-        margin-top: 5%;
+        margin-top: 2%;
+        margin-bottom: 2%;
         margin-left: 2%;
         padding: 0.5%;
         height: 80vh;
@@ -72,18 +73,17 @@
                 
             }
             button{
-            background-color: rgba(0, 0, 0, 0.712);
+            background-color: #ecebebb6;
             font-weight: 500;
             width: 70px;
-            color: white;
+            color: rgb(0, 0, 0);
             padding: 2%;
             border-radius: 20%;
             border: 2px black solid;
             margin: 3%;
             transition: 0.5s ease;
             &:hover{
-                background-color: white;
-                color: black;
+                background-color: rgba(194, 255, 242, 0.795);
             }
             }
         }
@@ -96,5 +96,4 @@
             height: 100%;
         }
     }
-
 }

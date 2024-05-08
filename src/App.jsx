@@ -1,5 +1,4 @@
 import Navbar from './components/Navbar.jsx'
-import Footer from './components/Footer.jsx'
 import ItemListContainer from './components/ItemListContainer.jsx'
 import { BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import '../styles/styles.scss'

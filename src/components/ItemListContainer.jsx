@@ -10,6 +10,7 @@ const ItemListContainer = () => {
     const [cargando, setCargando] = useState(true)
     const [busqueda, setBusqueda] = useState("");
     const [vestidosOriginales, setVestidosOriginales] = useState([]);
+    const [cantidadInicial, setCantidadInicial] = useState(20);
 
     const { colorId } = useParams()
 
@@ -30,7 +31,7 @@ const ItemListContainer = () => {
                         disponibilidad: data.disponibilidad 
                     };
                 })
-                setVestidos(docs)
+                setVestidos(docs.slice(0, cantidadInicial));
                 setVestidosOriginales(docs);
             })
             .finally(() => setCargando(false))
@@ -44,16 +45,20 @@ const ItemListContainer = () => {
                 (vestido.color && vestido.color.toLowerCase().includes(busquedaMin)) ||
                 (vestido.disponibilidad && vestido.disponibilidad.toLowerCase().includes(busquedaMin))
             );
-            setVestidos(resultados);
+            setVestidos(resultados.slice(0, cantidadInicial));
         } else {
-            setVestidos(vestidosOriginales);
+            setVestidos(vestidosOriginales.slice(0, cantidadInicial));
         }
-    }, [busqueda, vestidosOriginales]);
+    }, [busqueda, vestidosOriginales, cantidadInicial]);
 
     const handleBusquedaChange = (event) => {
         setBusqueda(event.target.value);
     };
     
+    const handleVerMas = () => {
+        // Incrementar la cantidad de vestidos a cargar al hacer clic en "Ver más"
+        setCantidadInicial(prevCantidad => prevCantidad + 20); // Puedes ajustar el incremento como desees
+    };
 
     return (
         <div className="vestidos">
@@ -74,8 +79,10 @@ const ItemListContainer = () => {
                             <p>No se encontraron vestidos.</p>
                         </div>
                     ) : (
-                        <ItemList vestidos={vestidos} />
-                        
+                        <div className="inicio">
+                            <ItemList vestidos={vestidos} />
+                            <button className="verMas" onClick={handleVerMas}>Ver Más</button>
+                        </div>
                     )}
                 </div>
             )}
